@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <h3>Simple Calculator</h3>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <div>
+            <button onclick="calculate('+')">Add</button>
+            <button onclick="calculate('-')">Subtract</button>
+            <button onclick="calculate('*')">Multiply</button>
+            <button onclick="calculate('/')">Divide</button>
+            <button onclick="calculate('%')">Modulo</button>
+        </div>
+        <button class="clear" onclick="clearScreen()">Clear</button>
+
+        <div class="result">
+            Result: <span id="result">0</span>
+        </div>
+    </div>
+    
+    <script>
+    function calculate(operator) {
+        let num1 = Number(document.getElementById("num1").value);
+        let num2 = Number(document.getElementById("num2").value);
+        let result;
+
+        if (isNaN(num1) || isNaN(num2)) {
+            alert("Please enter valid numbers");
+            return;
+        }
+
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 === 0) {
+                    alert("Division by zero is not allowed");
+                    return;
+                }
+                result = num1 / num2;
+                break;
+            case '%':
+                result = num1 % num2;
+                break;
+        }
+
+        document.getElementById("result").textContent = result;
+    }
+
+    function clearScreen() {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("result").textContent = "0";
+    }
+</script>
+</body>
+</html>
